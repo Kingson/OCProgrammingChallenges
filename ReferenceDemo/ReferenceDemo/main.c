@@ -16,13 +16,20 @@ void metersToFeetAndInches(double meters, unsigned int *ftPtr, double *inPtr){
     // 计算类型为无符号的整形feet变量的值
     unsigned int feet = (unsigned int)floor(rawFeet);
     // 将feet变量的值储存在提供的地址里
-    printf("Storing %u to the address %p\n", feet, ftPtr);
-    *ftPtr = feet;    // 计算英寸
+    
+    if (ftPtr) {
+        printf("Storing %u to the address %p\n", feet, ftPtr);
+        *ftPtr = feet;    // 计算英寸
+    }
+    
     double fractionalFoot = rawFeet - feet;
     double inches = fractionalFoot * 12.0;
     //将inches变量的值保存到传入的地址
-    printf("Storing %.2f to the address %p\n", inches, inPtr);
-    *inPtr = inches;
+    
+    if (inPtr) {
+        printf("Storing %.2f to the address %p\n", inches, inPtr);
+        *inPtr = inches;
+    }
 }
 
 int main(int argc, const char * argv[]) {
@@ -32,6 +39,6 @@ int main(int argc, const char * argv[]) {
     double inches;
     
     metersToFeetAndInches(meters, &feet, &inches);
-    printf("%.1f meters is equal to %d feet and %.1f inches.", meters, feet, inches);
+    printf("%.1f meters is equal to %d feet and %.1f inches.\n", meters, feet, inches);
     return 0;
 }
