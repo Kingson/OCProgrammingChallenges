@@ -7,16 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BNRPerson.h"
+//#import "BNRPerson.h"
+#import "BNREmployee.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
-        BNRPerson *mikey = [[BNRPerson alloc] init];
+//        BNRPerson *mikey = [[BNRPerson alloc] init];
+        BNREmployee *mikey = [[BNREmployee alloc] init];
         
          // 使用setter方法为实例变量赋值
         [mikey setHeightInMeters:1.7];
         [mikey setWeightInKilos:96];
+        
+        mikey.employeeID = 12;
+        mikey.hireDate = [NSDate dateWithNaturalLanguageString:@"Aug 2nd, 2010"];
+        
+        NSLog(@"Employee %u hired on %@", mikey.employeeID, mikey.hireDate);
         
         // 使用getter方法打印出实例变量的值
         float height = [mikey heightInMeters];

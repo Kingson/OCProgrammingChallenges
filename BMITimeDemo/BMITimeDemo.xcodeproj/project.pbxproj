@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4265029B1D017DB500C4BB27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4265029A1D017DB500C4BB27 /* main.m */; };
 		426502A31D017DE200C4BB27 /* BNRPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 426502A21D017DE200C4BB27 /* BNRPerson.m */; };
+		426502BC1D018EAE00C4BB27 /* BNREmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = 426502BB1D018EAE00C4BB27 /* BNREmployee.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		4265029A1D017DB500C4BB27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		426502A11D017DE200C4BB27 /* BNRPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRPerson.h; sourceTree = "<group>"; };
 		426502A21D017DE200C4BB27 /* BNRPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRPerson.m; sourceTree = "<group>"; };
+		426502BA1D018EAE00C4BB27 /* BNREmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNREmployee.h; sourceTree = "<group>"; };
+		426502BB1D018EAE00C4BB27 /* BNREmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNREmployee.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,8 @@
 				4265029A1D017DB500C4BB27 /* main.m */,
 				426502A11D017DE200C4BB27 /* BNRPerson.h */,
 				426502A21D017DE200C4BB27 /* BNRPerson.m */,
+				426502BA1D018EAE00C4BB27 /* BNREmployee.h */,
+				426502BB1D018EAE00C4BB27 /* BNREmployee.m */,
 			);
 			path = BMITimeDemo;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				426502BC1D018EAE00C4BB27 /* BNREmployee.m in Sources */,
 				4265029B1D017DB500C4BB27 /* main.m in Sources */,
 				426502A31D017DE200C4BB27 /* BNRPerson.m in Sources */,
 			);
