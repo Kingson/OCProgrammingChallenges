@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 //#import "BNRPerson.h"
 #import "BNREmployee.h"
+#import "BNRAsset.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -50,6 +51,92 @@ int main(int argc, const char * argv[]) {
         [mikey addYourselfToArray:testArray];
         
         NSLog(@"print testArray: %@", testArray);
+        
+        
+        
+        
+        //创建一组数组， 用来包含多个BNREmployee对象
+        NSMutableArray *employees = [[NSMutableArray alloc] init];
+        
+        NSMutableDictionary *executives = [[NSMutableDictionary alloc] init];
+        
+        for (int i = 0; i < 10; i++) {
+            //创建BNREmployee实例
+            BNREmployee *mikey = [[BNREmployee alloc] init];
+            
+            //为实例变量赋值
+            mikey.weightInKilos = 90 + i;
+            mikey.heightInMeters = 1.8 - i / 10.0;
+            mikey.employeeID = i;
+            
+            //将新创建的BNREmployee实例加入数组
+            [employees addObject:mikey];
+            
+            if (i == 0) {
+                [executives setObject:mikey forKey:@"CEO"];
+            }
+            
+            if (i == 1) {
+                [executives setObject:mikey forKey:@"CTO"];
+            }
+    
+        }
+        
+        NSMutableArray *allAssets = [[NSMutableArray alloc] init];
+        
+        for (int i = 0; i < 10; i++) {
+            BNRAsset *asset = [[BNRAsset alloc] init];
+            
+            //为BNRAsset对象设置合适的标签
+            NSString *currentLabel = [NSString stringWithFormat:@"Laptop %d", i];
+            asset.label = currentLabel;
+            asset.resaleValue = 350 + i * 17;
+            
+            // 生成0至9之间的随机整数（包含0和9）
+            NSUInteger randomIndex = random() % [employees count];
+            
+            BNREmployee *randomEmployee = [employees objectAtIndex:randomIndex];
+            
+            [randomEmployee addAsset:asset];
+            
+            [allAssets addObject:asset];
+        }
+        
+        NSSortDescriptor *voa = [NSSortDescriptor sortDescriptorWithKey:@"valueOfAssets" ascending:YES];
+        
+        NSSortDescriptor *eid = [NSSortDescriptor sortDescriptorWithKey:@"employeeID" ascending:YES];
+        
+        [employees sortUsingDescriptors:@[voa, eid]];
+        
+        // 输出整个NSMutableArray对象
+        NSLog(@"executives: %@", executives);
+        // 输出CEO的信息
+        NSLog(@"CEO: %@", executives[@"CEO"]);
+        
+        executives = nil;
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"holder.valueOfAssets > 700"];
+        
+        NSArray *toBeReclaimed = [allAssets filteredArrayUsingPredicate:predicate];
+        
+        NSLog(@"toBeReclaimed: %@", toBeReclaimed);
+        
+        toBeReclaimed = nil;
+        
+        NSLog(@"Employees: %@", employees);
+        
+        NSLog(@"Giving up ownership of one employee");
+
+        [employees removeObjectAtIndex:5];
+        
+        NSLog(@"allAssets:%@", allAssets);
+        
+        NSLog(@"Giving up ownership of arrays");
+        
+        employees = nil;
+        
+        allAssets = nil;
+        
         
     }
     return 0;

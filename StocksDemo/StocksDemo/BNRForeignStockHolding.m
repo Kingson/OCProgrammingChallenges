@@ -10,4 +10,14 @@
 
 @implementation BNRForeignStockHolding
 
+- (float)costInDollars
+{
+    return _purchaseSharePrice * _numberOfShares * _conversionRate;
+}
+
+- (float)valueInDollars
+{
+    return _currentSharePrice * _numberOfShares * _conversionRate;
+}
+
 @end

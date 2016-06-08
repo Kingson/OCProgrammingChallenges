@@ -7,11 +7,32 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BNRLogger.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
-        NSLog(@"Hello, World!");
+        BNRLogger *logger = [[BNRLogger alloc] init];
+        
+        //Delegate
+//        [[NSNotificationCenter defaultCenter] addObserver:logger selector:@selector(zoneChange:) name:NSSystemClockDidChangeNotification object:nil];
+        
+        //Block
+        [[NSNotificationCenter defaultCenter] addObserverForName:NSSystemTimeZoneDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification *note){
+           NSLog(@"The system time zone has changed!");
+        }];
+        
+        
+        NSURL *url = [NSURL URLWithString:@"http://www.duokan.com/reader/www/app.html?id=e7c3f41c56294254ba516ca3fd4ba296"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        __unused NSURLConnection *fetchConn = [[NSURLConnection alloc]
+                                               initWithRequest:request
+                                               delegate:logger
+                                               startImmediately:YES];
+    
+        
+        __unused NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:logger selector:@selector(updateLastTime:) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] run];
     }
     return 0;
 }

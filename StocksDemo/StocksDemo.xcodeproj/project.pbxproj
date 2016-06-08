@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4264BB411D065B5700CF4A2C /* BNRForeignStockHolding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4264BB401D065B5700CF4A2C /* BNRForeignStockHolding.m */; };
 		426502B11D01858900C4BB27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 426502B01D01858900C4BB27 /* main.m */; };
 		426502B91D0185A600C4BB27 /* BNRStockHolding.m in Sources */ = {isa = PBXBuildFile; fileRef = 426502B81D0185A600C4BB27 /* BNRStockHolding.m */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4264BB3F1D065B5700CF4A2C /* BNRForeignStockHolding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRForeignStockHolding.h; sourceTree = "<group>"; };
+		4264BB401D065B5700CF4A2C /* BNRForeignStockHolding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRForeignStockHolding.m; sourceTree = "<group>"; };
 		426502AD1D01858900C4BB27 /* StocksDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = StocksDemo; sourceTree = BUILT_PRODUCTS_DIR; };
 		426502B01D01858900C4BB27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		426502B71D0185A600C4BB27 /* BNRStockHolding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRStockHolding.h; sourceTree = "<group>"; };
@@ -63,6 +66,8 @@
 				426502B01D01858900C4BB27 /* main.m */,
 				426502B71D0185A600C4BB27 /* BNRStockHolding.h */,
 				426502B81D0185A600C4BB27 /* BNRStockHolding.m */,
+				4264BB3F1D065B5700CF4A2C /* BNRForeignStockHolding.h */,
+				4264BB401D065B5700CF4A2C /* BNRForeignStockHolding.m */,
 			);
 			path = StocksDemo;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4264BB411D065B5700CF4A2C /* BNRForeignStockHolding.m in Sources */,
 				426502B11D01858900C4BB27 /* main.m in Sources */,
 				426502B91D0185A600C4BB27 /* BNRStockHolding.m in Sources */,
 			);
@@ -245,6 +251,7 @@
 				426502B61D01858900C4BB27 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

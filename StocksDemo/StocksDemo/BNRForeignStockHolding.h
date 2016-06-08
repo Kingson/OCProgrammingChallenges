@@ -10,4 +10,6 @@
 
 @interface BNRForeignStockHolding : BNRStockHolding
 
+@property(nonatomic) float conversionRate;
+
 @end
