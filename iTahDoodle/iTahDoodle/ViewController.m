@@ -12,12 +12,25 @@
 
 @end
 
+NSString *BNRDocPath()
+{
+    NSArray *pathList = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [pathList[0] stringByAppendingPathComponent:@"data.td"];
+}
+
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.tasks = [NSMutableArray array];
+//    self.tasks = [NSMutableArray array];
+    NSArray *plist = [NSArray arrayWithContentsOfFile:BNRDocPath()];
+    
+    if (plist) {
+        self.tasks = [plist mutableCopy];
+    } else {
+        self.tasks = [NSMutableArray array];
+    }
     
     CGRect winFrame = [[UIScreen mainScreen] bounds];
     
@@ -27,11 +40,13 @@
     
     CGRect tableFrame = CGRectMake(0, 80, winFrame.size.width, winFrame.size.height - 100);
     CGRect fieldFrame = CGRectMake(20, 40, 200, 31);
-    CGRect buttonFrame = CGRectMake(228, 40, 72, 31);
+    CGRect insertButtonFrame = CGRectMake(228, 40, 72, 31);
+    CGRect deleteButtonFrame = CGRectMake(228 + 82, 40, 72, 31);
     
     self.taskTable = [[UITableView alloc] initWithFrame:tableFrame style:UITableViewStylePlain];
     
     self.taskTable.dataSource = self;
+    self.taskTable.delegate = self;
     
     self.taskTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -44,15 +59,22 @@
     
     
     self.insertButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.insertButton.frame = buttonFrame;
+    self.insertButton.frame = insertButtonFrame;
     
     [self.insertButton setTitle:@"Insert" forState:UIControlStateNormal];
     
     [self.insertButton addTarget:self action:@selector(addTask:) forControlEvents:UIControlEventTouchUpInside];
     
+    self.deleteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.deleteButton.frame = deleteButtonFrame;
+    
+    [self.deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
+    [self.deleteButton addTarget:self action:@selector(deleteTask:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:self.taskTable];
     [self.view addSubview:self.taskField];
     [self.view addSubview:self.insertButton];
+    [self.view addSubview:self.deleteButton];
 
 }
 
@@ -78,6 +100,18 @@
     [self.taskField setText:@""];
     
     [self.taskField resignFirstResponder];
+    
+    [self.tasks writeToFile:BNRDocPath() atomically:YES];
+}
+
+- (void)deleteTask:(id)sender
+{
+    if (self.tasks && [self.tasks count] != 0) {
+        [self.taskTable beginUpdates];
+        [self.taskTable deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:self.currentSelectedCell inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tasks removeObjectAtIndex:self.currentSelectedCell];
+        [self.taskTable endUpdates];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -93,6 +127,12 @@
     c.textLabel.text = item;
     
     return c;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.currentSelectedCell = indexPath.row;
+    NSLog(@"curr:%ld", (long)self.currentSelectedCell);
 }
 
 @end

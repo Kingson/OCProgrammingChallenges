@@ -8,13 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController<UITableViewDataSource>
+NSString *BNRDocPath(void);
+
+@interface ViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic) UITableView *taskTable;
 @property (nonatomic) UITextField *taskField;
 @property (nonatomic) UIButton *insertButton;
 @property (nonatomic) NSMutableArray *tasks;
+@property (nonatomic) UIButton *deleteButton;
+@property (nonatomic) NSInteger currentSelectedCell;
 
 - (void)addTask:(id)sender;
-
+- (void)deleteTask:(id)sender;
 @end
 
