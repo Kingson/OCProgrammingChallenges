@@ -14,9 +14,11 @@ int main(int argc, const char * argv[]) {
         NSHost *host = [NSHost currentHost];
         NSString *hostLocalizedName = [host localizedName];
         NSString *hostName = [host name];
+        NSArray *address = [host addresses];
         NSArray *hostNames = [host names];
         NSLog(@"hostLocalizedName is %@", hostLocalizedName);
         NSLog(@"hostName is %@", hostName);
+        NSLog(@"address is %@", address);
         NSLog(@"hostNames is %@", hostNames);
     }
     return 0;
